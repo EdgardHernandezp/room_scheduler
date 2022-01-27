@@ -17,7 +17,6 @@ public class RoomSchedulerController {
     SchedulingService schedulingService;
 
     @GetMapping("/find")
-    @ResponseStatus(HttpStatus.FOUND)
     public List<Room> retrieveAvailableRooms(Date startDate, long meetingTimeSpanInMinutes, int numberAttendees,
             int requiresMultimedia) {
         return schedulingService.findAvailableRooms(startDate, meetingTimeSpanInMinutes, numberAttendees,
@@ -27,6 +26,7 @@ public class RoomSchedulerController {
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Meeting scheduleMeeting(int roomId, Date startDate, long meetingTimeSpanInMinutes) {
+        System.out.println(startDate);
         return schedulingService.scheduleMeetingRoom(roomId, startDate, meetingTimeSpanInMinutes);
     }
 
